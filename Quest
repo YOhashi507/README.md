@@ -1,1 +1,27 @@
+#!/bin/bash
+
+# 保存するデータベースファイル
+DB_FILE="passwords.txt"
+
+# ファイルが存在しない場合は作成
+if [ ! -f "$DB_FILE" ]; then
+    touch "$DB_FILE"
+fi
+
+# メニューの表示
+echo "==============================="
+echo " パスワード保存スクリプト"
+echo "==============================="
+read -p "サービス名を入力してください: " service
+read -p "ユーザー名を入力してください: " username
+read -sp "パスワードを入力してください: " password
+echo
+
+# 入力データを保存 (サービス名, ユーザー名, パスワード)
+echo "$service,$username,$password" >> "$DB_FILE"
+echo "情報が保存されました。"
+
+# 保存されたデータを確認する（オプション）
+echo "保存された情報:"
+cat "$DB_FILE"
 
